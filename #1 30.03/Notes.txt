@@ -1,0 +1,170 @@
+powłoka??fatygowac
+
+++++++++++++++
+EVRTH
+++++++++++++++
+
+mkdir - creates folder
+touch - creates file
+nano - norm text editor
+source - executes file source
+bash - executes file
+chmod a+x - (all+executes) - set permissions to execute file without any command --> ./scriptName
+ls -la (ALL + hidden with dot on the beginning)
+less - browse files
+
+Create folder bin in home catalog, move there script file, and after that we can execute script in terminal just with name of script
+
+mv bash/script.sh bin/ - move file to another folder
+
+good practice - first line of script should be pointer of bash
+hashbank - #!/bin/bash
+bash - ulepszony SHELL, born against shell
+#-comments
+; - separator of commands in terminal line to execute both in a sequence (ex: free -h  ; df -h)
+
+mechanizmy przekazywania informacji:
+przekierowanie wyjscia:
+standardowe wyjscie danych - kanal na ekranie.
+mozemy przekierowac wyjscie do pliku
+ls > pliki.txt
+
+jest jeszcze drugi kanal do przekierowania bledow, nie da sie przekierowac jak powyzej.
+Zeby przekierowac do pliku bledy wykorzystujemy kanal #2:
+
+ls somefolderError 2> error.txt
+
+cat pliki.txt - executes;?
+
+jezeli chcemy przekierowac oba wyniki obojetnie czy error czy success, to :
+
+ls katalog > result.txt  2>&1
+
+zeby nie nadpisywac pliki a dopisywac to wykorzystywac >> :
+
+ls katalog >> result.txt  2>&1
+
+set -C - uniemozliwic nadpisywanie pliku (tylko dopisywanie i in..)
+
+set +C - znak plus wylaczy preferencje C:
+'-' do wlaczenia preferencji, '+' do wylaczenia
+
+strzalki w druga strone przekazywuja do wejsciowego kanalu:
+less < result.txt
+
+ls /bin | head - wykonywanie programu head przez pipe '|', wyswietlil nie wszystko, a pierwsze linie.
+
+free -h | grep "Mem" - wyszukuje linie ktora zaczyna sie o "Mem"
+cut - pozwala cos wyciac
+top - manager zadan
+ps aux - wszystkie informacje o procesach
+jobs (-l) - lista zadan
+fg 'numer zad' - foreground
+znak & - wykonywac w tle;
+gdy wykonujemy w tle, to mozemy sprawdzac i modyfikowac stan wykonywanego w tle po id
+
+++++++++++++++++++++++++++++++++++++++
+VARIABLES:
+++++++++++++++++++++++++++++++++++++++
+
+text="texttt" - cudzyslowy, bez spacji.
+liczba=12 - wartosci liczbowe.
+odczytanie zmienniej $text, $liczba.
+pwd - path to file, print working directoFry;
+export - robi zmenne globalna (bez dolara: export liczba)
+bedzie dostepny w nowych oknach terminalu.
+env(printenv) - zmienne srodowiskowe, lista zmiennych globalnych.
+unset - usunac zmienna globalne
+zmienna= - stworzyc pusta zmienne
+
+echo $0 - oznacza skrypt ktory wywolal to polecenie i wypisuje sciezke do wykonywanego skryptu.
+
+echo $# - wypisuje liczbe argumentow podanych przy wykonaniu skryptu
+
+script argumenty 'pierwszy', 'drugi':
+script.sh pierwszy drugi
+w kodzie zmienne $1, $2 przyjmuja argumenty podane w terminalu przy wykonaniu skryptu
+
+	echo $@ - liste wszystkich argumentow podanych
+
+nowa linia '\n' z argumentem '-e', zeby wiedzial ze powinien przetwarzac znaki specjalne albo echo "";
+
+zeby zapisac wynik dzialania skryptu do zmiennej:
+	katalog=`pwd`	 
+	katalog=$(pwd)
+	katalog=$[2*4] - zwroci 8
+zeby pracowac na wartosciach nie calkowitych trzeba skorzystac sie z pipea:
+	echo "5/2" | bc -l
+	echo "jestem w katalogu $katalog" zadziala normalnie;
+
++++++++++++++++++++
+INSTRUCTIONS/CONDITIONS
++++++++++++++++++++
+
+if<warunek> ; then
+	polecenia
+fi
+
+if [ -d "katalog" ] ; then
+
+elif [] ; then
+
+else
+
+fi
+
+read - czeka na odpowiedz z konsoli
+case "$bramka" in 
+        "1") echo "jedynka";;
+        "2") echo "dwojka";;
+	"3") echo "trojka";;
+	*) echo "Niedobra bramka"
+esac
+
+;; == break;
+
++++++++++++++++++++
+LOOPS
++++++++++++++++++++
+
+for i in {1..5} ; do
+	#dododo
+done;
+
+for i in {1..10..2(step)} ; do
+	#dododo
+done;
+
+for i in $(seq 1 2(step) 10) ; do
+	#dododo
+done;
+
+for i in $(seq 1 10) ; do
+        if [ $i -eq 2 ] ; then
+                continue
+        fi
+                echo "$i";
+done 
+
+
+while
+
+until
+
++++++++++++++++++++
+GENERAL
++++++++++++++++++++
+
+Bash dziala tylko na liczbach calkowitych.
+pomiedzy if a elif powinno cos byc, albo ':' - nic nie rob
+echo $?  zwraca wartość którą zakończyło się polecenie/skrypt.../0 sukces, 2... - faliure/
+exit 5 - zakonczyc skrypt kodem 5
+
+set -x - wypisuje dzialania sktryptu
+
+HERE DOCS:
+: << 'EOF'
+to jest blok
+komentarz
+kod,
+EOF
