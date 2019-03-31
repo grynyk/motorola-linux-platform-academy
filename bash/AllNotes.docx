@@ -1,0 +1,267 @@
++++++++++++++++++++++++++++++++++++++++++++++
+1 DAY
++++++++++++++++++++++++++++++++++++++++++++++
+
+powłoka??fatygowac
+
+++++++++++++++
+EVRTH
+++++++++++++++
+
+mkdir - creates folder
+touch - creates file
+nano - norm text editor
+source - executes file source
+bash - executes file
+chmod a+x - (all+executes) - set permissions to execute file without any command --> ./scriptName
+ls -la (ALL + hidden with dot on the beginning)
+less - browse files
+
+Create folder bin in home catalog, move there script file, and after that we can execute script in terminal just with name of script
+
+mv bash/script.sh bin/ - move file to another folder
+
+good practice - first line of script should be pointer of bash
+hashbank - #!/bin/bash
+bash - ulepszony SHELL, born against shell
+#-comments
+; - separator of commands in terminal line to execute both in a sequence (ex: free -h  ; df -h)
+
+mechanizmy przekazywania informacji:
+przekierowanie wyjscia:
+standardowe wyjscie danych - kanal na ekranie.
+mozemy przekierowac wyjscie do pliku
+ls > pliki.txt
+
+jest jeszcze drugi kanal do przekierowania bledow, nie da sie przekierowac jak powyzej.
+Zeby przekierowac do pliku bledy wykorzystujemy kanal #2:
+
+ls somefolderError 2> error.txt
+
+cat pliki.txt - executes;?
+
+jezeli chcemy przekierowac oba wyniki obojetnie czy error czy success, to :
+
+ls katalog > result.txt  2>&1
+
+zeby nie nadpisywac pliki a dopisywac to wykorzystywac >> :
+
+ls katalog >> result.txt  2>&1
+
+0 - wejscie standardowe
+1- wyscie standardowe
+2 - wyjscie na bledy
+
+set -C - uniemozliwic nadpisywanie pliku (tylko dopisywanie i in..)
+
+set +C - znak plus wylaczy preferencje C:
+'-' do wlaczenia preferencji, '+' do wylaczenia
+
+strzalki w druga strone przekazywuja do wejsciowego kanalu:
+less < result.txt
+
+ls /bin | head - wykonywanie programu head przez pipe '|', wyswietlil nie wszystko, a pierwsze linie.
+
+free -h | grep "Mem" - wyszukuje linie ktora zaczyna sie o "Mem"
+cut - pozwala cos wyciac
+top - manager zadan
+ps aux - wszystkie informacje o procesach
+jobs (-l) - lista zadan
+fg 'numer zad' - foreground
+znak & - wykonywac w tle;
+gdy wykonujemy w tle, to mozemy sprawdzac i modyfikowac stan wykonywanego w tle po id
+
+++++++++++++++++++++++++++++++++++++++
+VARIABLES:
+++++++++++++++++++++++++++++++++++++++
+
+text="texttt" - cudzyslowy, bez spacji.
+liczba=12 - wartosci liczbowe.
+odczytanie zmienniej $text, $liczba.
+pwd - path to file, print working directoFry;
+export - robi zmenne globalna (bez dolara: export liczba)
+bedzie dostepny w nowych oknach terminalu.
+env(printenv) - zmienne srodowiskowe, lista zmiennych globalnych.
+unset - usunac zmienna globalne
+zmienna= - stworzyc pusta zmienne
+
+echo $0 - oznacza skrypt ktory wywolal to polecenie i wypisuje sciezke do wykonywanego skryptu.
+
+echo $# - wypisuje liczbe argumentow podanych przy wykonaniu skryptu
+
+script argumenty 'pierwszy', 'drugi':
+script.sh pierwszy drugi
+w kodzie zmienne $1, $2 przyjmuja argumenty podane w terminalu przy wykonaniu skryptu
+
+	echo $@ - liste wszystkich argumentow podanych
+
+Sprawdzenie czy zostal podany argument #1:
+	arg=${1:?Nie podano argumentu}
+
+nowa linia '\n' z argumentem '-e', zeby wiedzial ze powinien przetwarzac znaki specjalne albo echo "";
+
+zeby zapisac wynik dzialania skryptu do zmiennej:
+	katalog=`pwd`	 
+	katalog=$(pwd)
+	katalog=$[2*4] - zwroci 8
+zeby pracowac na wartosciach nie calkowitych trzeba skorzystac sie z pipea:
+	echo "5/2" | bc -l
+	echo "jestem w katalogu $katalog" zadziala normalnie;
+
++++++++++++++++++++
+INSTRUCTIONS/CONDITIONS
++++++++++++++++++++
+
+if<warunek> ; then
+	polecenia
+fi
+
+if [ -d "katalog" ] ; then
+
+elif [] ; then
+
+else
+
+fi
+
+read - czeka na odpowiedz z konsoli
+case "$bramka" in 
+        "1") echo "jedynka";;
+        "2") echo "dwojka";;
+	"3") echo "trojka";;
+	*) echo "Niedobra bramka"
+esac
+
+;; == break;
+
++++++++++++++++++++
+LOOPS
++++++++++++++++++++
+
+for i in {1..5} ; do
+	#dododo
+done;
+
+for i in {1..10..2(step)} ; do
+	#dododo
+done;
+
+for i in $(seq 1 2(step) 10) ; do
+	#dododo
+done;
+
+for i in $(seq 1 10) ; do
+        if [ $i -eq 2 ] ; then
+                continue
+        fi
+                echo "$i";
+done 
+
+
+while
+
+until
+
++++++++++++++++++++
+GENERAL
++++++++++++++++++++
+
+Bash dziala tylko na liczbach calkowitych.
+pomiedzy if a elif powinno cos byc, albo ':' - nic nie rob
+echo $?  zwraca wartość którą zakończyło się polecenie/skrypt.../0 sukces, 2... - faliure/
+exit 5 - zakonczyc skrypt kodem 5
+
+set -x - wypisuje dzialania sktryptu
+
+HERE DOCS DZIWNE BLOKI KOMENTARZOWE:
+: << 'EOF'
+to jest blok
+komentarz
+kod,
+EOF
+
+INFO HELP:
+	man
+	man <program>
+	<program> --help : cut --help
+
+Skrypt zawsze konczy sie powodzeniem "0"
+Jeżeli chcemy, żeby program w pewnych warunkach kończył się błędem, czyli przy echo $ wypisywał kody błędów, to należy umieścić w skrypcie polecenie "exit 2(kod bledu)"
+
++++++++++++++++++++++++++++++++++++++++++++++++++
+DAY 2
++++++++++++++++++++++++++++++++++++++++++++++++++
+
+#31.03
+
+++++++++++++++
+PRZETWARZANIE TEKSTU
+++++++++++++++
+
+free -m | grep "^Mem" <-- szukamy wierszy ktore zaczynaja sie na "Mem", "^" - początek linii.
+
+alias - skonfigurować polecenie: alias nano="nano -c" , pod poleceniem "nano" uruchomi się "nano -c" (w danym terminalu).
+
+tr - mozliwosc wyrzucania, sciskania(usunac powtarzania, zmniejszyc ilosc powtarzajacych sie znakow pod rzad) symboli:
+	free -m | grep "^Mem" | tr -s " "
+cut - mozliwosc wycinania kolumny lub tekstu, 
+	A)free -m | grep "^Mem" | tr -s " " | cut -d " " -f 4
+
+wszystko co wykonujemy w terminalu miesci sie w historii: 
+	cat ~/.bash_history
+
+awk - jezyk przetwarzania / pattern scanning and processing language /
+	free -m | awk '/^Mem/ {print $4}' robi to samo co polecenie A - wyciaga 4 kolumne
+
+echo "to jest ${a}ek" - zeby dopisac do zmiennej stringa text trzeba wyroznic klamrami ${a}
+
+echo ${b:texteeen} - zdefiniowac zmienna w klamrach jezeli niema ":-" w zakresie echo ${}, ":=" - przypisać lokalnie w zakresie skryptu.
+
+ps aux | tail -n +2 | cut -d " " -f 1 | sort -u | sed "s/+//"
+
+usuwa tail i zaczyna od indeksu 2, wycina spacije i 1 kolumne, sortuje i wyswetla tylko unikatowe wartosci, usuwa + z naw.
+sed "regex"
+sed "s(substitute)/co szukamy/na co zamieniamy/g(global)"
+
+++++++++++++++
+ARRAYS
+++++++++++++++
+
+tablica=("ala" "ma" "kota") - elementy są rozdzielane spacjami
+echo ${tablica[@]} - obowiązkowo klamry i obowiązkowo argument, @ lub * to wszystkie elementy, inne od 0..*
+
+
+tab2=("${tablica[@]:0:2}" "trzeci" "${tablica[@]:2}")
+
+pokaz randomowe symbole , tr regex "operate", fold - width kazdego wiersza 100, oraz pierwszy element head -n 1;
+
+	cat /dev/urandom | tr -dc "operate" | fold -w 10 | head -n 1
+
+++++++++++++
+FUNCTIONS
+++++++++++++
+
+funkcja nie moze zwrocic nic, mozemy przekazac parametry przy okazji wywolania tak samo jak z skryptem nazwa_funkcja parametr1 parametr 2 (zeby wywolac funkcje nie trzeba nawiasow)
+
+random-string(){ 
+        cat /dev/urandom | tr -dc ${1:?nie podano regex} | fold -w ${2:-10} | head -n 1
+}
+
+random-string 0-9 20
+
+jezeli uruchomic skrypt ". script" lub "source script" w ktorym wykonuje sie funkcja
+to po uruchamianiu skryptu w konsoli ta funkcja bedzie dostepna do uruchomiania bez wskazania nazwy skryptu "funkcja arg1 arg2"
+
+zmienne sa widoczne w calym skrypcie, w funkcjach mozna odwolywac sie wprost do nazwy zmiennej.
+
+Zeby zrobic w funkcji zmienna o takiej samiej nazwie jak jest globalne, to przed zmienna dopisac slowo 'local':
+a="a"
+funkcja(){
+	local a = "aa"
+}
+
+
+script admin.sh do wykonywania roznych operacji w konsoli "graficznie"
+
+
+
