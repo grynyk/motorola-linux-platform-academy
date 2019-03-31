@@ -44,6 +44,10 @@ zeby nie nadpisywac pliki a dopisywac to wykorzystywac >> :
 
 ls katalog >> result.txt  2>&1
 
+0 - wejscie standardowe
+1- wyscie standardowe
+2 - wyjscie na bledy
+
 set -C - uniemozliwic nadpisywanie pliku (tylko dopisywanie i in..)
 
 set +C - znak plus wylaczy preferencje C:
@@ -86,6 +90,9 @@ script.sh pierwszy drugi
 w kodzie zmienne $1, $2 przyjmuja argumenty podane w terminalu przy wykonaniu skryptu
 
 	echo $@ - liste wszystkich argumentow podanych
+
+Sprawdzenie czy zostal podany argument #1:
+	arg=${1:?Nie podano argumentu}
 
 nowa linia '\n' z argumentem '-e', zeby wiedzial ze powinien przetwarzac znaki specjalne albo echo "";
 
@@ -162,9 +169,17 @@ exit 5 - zakonczyc skrypt kodem 5
 
 set -x - wypisuje dzialania sktryptu
 
-HERE DOCS:
+HERE DOCS DZIWNE BLOKI KOMENTARZOWE:
 : << 'EOF'
 to jest blok
 komentarz
 kod,
 EOF
+
+INFO HELP:
+	man
+	man <program>
+	<program> --help : cut --help
+
+Skrypt zawsze konczy sie powodzeniem "0"
+Jeżeli chcemy, żeby program w pewnych warunkach kończył się błędem, czyli przy echo $ wypisywał kody błędów, to należy umieścić w skrypcie polecenie "exit 2(kod bledu)"

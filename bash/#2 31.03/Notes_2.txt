@@ -1,0 +1,73 @@
+#31.03
+
+++++++++++++++
+PRZETWARZANIE TEKSTU
+++++++++++++++
+
+free -m | grep "^Mem" <-- szukamy wierszy ktore zaczynaja sie na "Mem", "^" - początek linii.
+
+alias - skonfigurować polecenie: alias nano="nano -c" , pod poleceniem "nano" uruchomi się "nano -c" (w danym terminalu).
+
+tr - mozliwosc wyrzucania, sciskania(usunac powtarzania, zmniejszyc ilosc powtarzajacych sie znakow pod rzad) symboli:
+	free -m | grep "^Mem" | tr -s " "
+cut - mozliwosc wycinania kolumny lub tekstu, 
+	A)free -m | grep "^Mem" | tr -s " " | cut -d " " -f 4
+
+wszystko co wykonujemy w terminalu miesci sie w historii: 
+	cat ~/.bash_history
+
+awk - jezyk przetwarzania / pattern scanning and processing language /
+	free -m | awk '/^Mem/ {print $4}' robi to samo co polecenie A - wyciaga 4 kolumne
+
+echo "to jest ${a}ek" - zeby dopisac do zmiennej stringa text trzeba wyroznic klamrami ${a}
+
+echo ${b:texteeen} - zdefiniowac zmienna w klamrach jezeli niema ":-" w zakresie echo ${}, ":=" - przypisać lokalnie w zakresie skryptu.
+
+ps aux | tail -n +2 | cut -d " " -f 1 | sort -u | sed "s/+//"
+
+usuwa tail i zaczyna od indeksu 2, wycina spacije i 1 kolumne, sortuje i wyswetla tylko unikatowe wartosci, usuwa + z naw.
+sed "regex"
+sed "s(substitute)/co szukamy/na co zamieniamy/g(global)"
+
+++++++++++++++
+ARRAYS
+++++++++++++++
+
+tablica=("ala" "ma" "kota") - elementy są rozdzielane spacjami
+echo ${tablica[@]} - obowiązkowo klamry i obowiązkowo argument, @ lub * to wszystkie elementy, inne od 0..*
+
+
+tab2=("${tablica[@]:0:2}" "trzeci" "${tablica[@]:2}")
+
+pokaz randomowe symbole , tr regex "operate", fold - width kazdego wiersza 100, oraz pierwszy element head -n 1;
+
+	cat /dev/urandom | tr -dc "operate" | fold -w 10 | head -n 1
+
+++++++++++++
+FUNCTIONS
+++++++++++++
+
+funkcja nie moze zwrocic nic, mozemy przekazac parametry przy okazji wywolania tak samo jak z skryptem nazwa_funkcja parametr1 parametr 2 (zeby wywolac funkcje nie trzeba nawiasow)
+
+random-string(){ 
+        cat /dev/urandom | tr -dc ${1:?nie podano regex} | fold -w ${2:-10} | head -n 1
+}
+
+random-string 0-9 20
+
+jezeli uruchomic skrypt ". script" lub "source script" w ktorym wykonuje sie funkcja
+to po uruchamianiu skryptu w konsoli ta funkcja bedzie dostepna do uruchomiania bez wskazania nazwy skryptu "funkcja arg1 arg2"
+
+zmienne sa widoczne w calym skrypcie, w funkcjach mozna odwolywac sie wprost do nazwy zmiennej.
+
+Zeby zrobic w funkcji zmienna o takiej samiej nazwie jak jest globalne, to przed zmienna dopisac slowo 'local':
+a="a"
+funkcja(){
+	local a = "aa"
+}
+
+
+script admin.sh do wykonywania roznych operacji w konsoli "graficznie"
+
+
+
