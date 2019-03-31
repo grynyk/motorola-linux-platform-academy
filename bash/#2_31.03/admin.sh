@@ -39,15 +39,26 @@ select opt in "${options[@]}" ; do
 		;;
 
 		"Zmien katalog roboczy")
-			read -p "Podaj nazwe uzytkownika [$user_name]:" new_user_name
-			if [ -n "$new_user_name" && id -u $new_user_name ] ; then
-				$user_name="$new_user_name";
+			read -p "Podaj nazwe katalogu [$working_dir]:" new_working_dir
+		if [ -n "$new_working_dir" ] ; then
+			if [ -d "$new_working_dir" ] ; then
+				working_dir="$new_working_dir"
+				$(cd $new_working_dir && pwd);
+				
+				echo "katalog zostal zmieniony . . ."
+				echo "$(pwd)"
 			else
-				echo "Nie ma takiego uzytkownika . . .\n"
+				echo "Nie istnieje takiego katalogu . . ."
+				echo
 			fi
+
+		else
+			echo "Nie podano katalogu . . ."
+		fi
 		;;
 		"Drop cache")
-			echo "${options[3]}"
+			sudo sysctl vm.drop_caches=3;
+			echo "Cache zostal wyczyszczony . . ."
 		;;
 		
 		"Wyjdz") 
