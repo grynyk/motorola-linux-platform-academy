@@ -1,0 +1,12 @@
+++++++++++++++++++
+INFO
++++++++++++++++++
+
+Daemon - program wykonywany w tle
+kazde urzadzenie jest plikiem, kazdy katalog jest plikiem.
+Linki - miekie albo twarde (soft/symbolic, hard)
+Dyski sa podloczone do folderow w systemie, a nie tak jak w windowsie podzielone na dyski C,D,E / u windowsie A,B zarezerwowane pod napędy dyskiet/
+Fork - rozgalezenie procesow (ojciec tworzy potomny - potomny potomny)
+Zombie - potomny proces ktorzy nie zauwazyl ze ojcicec zginal i nie ma z kim komunikowac.
+"Nice" w linuxie oznacza priority , wyzszy priorytet od -20 do 19 (default 0)
+
