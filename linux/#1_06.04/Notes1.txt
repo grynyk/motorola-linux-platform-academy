@@ -9,4 +9,34 @@ Dyski sa podloczone do folderow w systemie, a nie tak jak w windowsie podzielone
 Fork - rozgalezenie procesow (ojciec tworzy potomny - potomny potomny)
 Zombie - potomny proces ktorzy nie zauwazyl ze ojcicec zginal i nie ma z kim komunikowac.
 "Nice" w linuxie oznacza priority , wyzszy priorytet od -20 do 19 (default 0)
+VM WARE
+
+mount - pokazuje gdzie sa zamontowane wszystkie urzadzenia i dyski logiczne.
+set PATH =.:$PATH;
+yum - 
+ll, crw, c ozna urzadzenie znakowe;
+zapis/odczyt do null wyjatkowo szybkie :)
+katalog etc miesci pliki konfiguracyjne
+
+wyszsuk google:
+
+linux package -rpm (except rpm)
+"linux package" -rpm (tylko to )
+OR dziala
+
+~ - katalog domowy danego uzytkownika
+~user - katalog domowy wskazanego uzytkownika
+which, whereis - informacja o pliku
+which ls - co to jest ls.
+whereis ls - gdzie znajduje sie
+touch - jezeli pliku nie bylo to tworzy, jezeli byl to odswieza date modyfikacji.
+who - aktualnie zalogowane uzytkowniki
+df - uzycie dysku / df -h
+du - uzycie dysku / du -sxh ~/ - file space usage
+ssh eon who do kogo jestes podlaczony
+quit VI - shift + z + z
+w pliku shadow zmienic hash i uzytkownik nie zmoze zalogowac sie
+whoami, id - na ktorym uzytkowniku, id w ktorych grupach, id i td.
+ctrl+d - wylogowywanie, or astalavista, exit
+sudo - su przelacza, do wykonuje
 
