@@ -35,3 +35,8 @@ kazdy modul ma zmienna __name__
 INTRODUCTION TO MACHINE LEARNING WITH PYTHON - O'REILLY
 	Slownik:
 		d = {'key', 'value'}
+		iteracja po kluczach: for k in d / d.keys()
+		iteracja po wartosciach: for v in d.values()
+		iteracja po kluczach i wartosciach: for i in d.items()
+		Dictionary comprehension:
+		{i: str(i) for i in range(5) if i%2==0}
