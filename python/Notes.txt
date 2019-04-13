@@ -33,3 +33,5 @@ if __name__ == "__main__":
 kazdy modul ma zmienna __name__
 // TODO - poczytac wiecej
 INTRODUCTION TO MACHINE LEARNING WITH PYTHON - O'REILLY
+	Slownik:
+		d = {'key', 'value'}
