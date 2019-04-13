@@ -1,0 +1,32 @@
+https://www.medrela.com/c/2019-04-13.html
+from __future__ import division - zmienic domyslne zachowanie python2 na python3.
+
+Struktury danych:
+	liczby:
+		int i float:
+		inty nie sa ograniczone
+		'/' - dzielenie - w pythonie 2 przy dzieleniu int na int zwróci int, w pythonie3 wynikiem jest zawsze float	
+		w pythonie 2 zawsze dobrze robic cast na float: x/float(y)
+	Stringi:
+		Stringi albo w "" lub ''
+		domyslnie czyta znaki specjalne (\n, r"", )
+		formatowanie stringow:
+		"%s - %d - %.3f" % ('asdf',2,2.12415)
+		'{1} {0}'.format(2, 'asdf')
+		od pythona 3 - strict interpolation:
+		print("f"x to {x}, y to {y}")
+		Stringi są nie mutowalne, jezeli chcemy zmienic, to tworzymy nowy string;
+		split() - jezeli nie podamy argument to dziala na dowolnych bialych znakach
+		split(SEPARATOR, ILE PODZIALOW)
+		None - odpowiednik NULL z innych jezykow
+		rsplit - reverse split
+		find - wyszukac index
+		'SEPARATOR'.join([Lista elementow ktore chce polaczyc])
+	Kolekcji:
+		Lista - uporzadkowana tablica
+		Lista = ['a','b','c']
+		Lista.append(element)
+		len() - sprawdzenie dlugosci stringu, liscie, mapie
+
+
+

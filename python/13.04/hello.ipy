@@ -1,0 +1,16 @@
+# print("Hello world")
+#print "Hello world" -- python 2
+#python3 -i hello.py - po uruchomieniu otwarcie interaktywnej konsoli
+
+# def foo():
+#     print("Hello Foo")
+
+# ! to co po wykrzykniku wykonuje sie w BASHu, mozna pisac kod odrazu na bashu i pythonie
+# Zeby uruchomic kod pythona z bashem trzeba zmienic rozszerzenie pliku na ipy
+# ? do wyswetlenia pomocy
+# % - modulo, %timeit - wyznacza czas wykonania kodu
+# %%writefile - umiescic w pliky ponizszy tekst
+
+    # filenames = !ls
+    # for filename in filenames:
+    #     !echo mv {filename} PREFIX-{filename}
