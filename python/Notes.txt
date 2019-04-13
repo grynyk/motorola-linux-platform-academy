@@ -27,6 +27,9 @@ Struktury danych:
 		Lista = ['a','b','c']
 		Lista.append(element)
 		len() - sprawdzenie dlugosci stringu, liscie, mapie
+		[char.upper() for char in original]
 
-
-
+if __name__ == "__main__":
+kazdy modul ma zmienna __name__
+// TODO - poczytac wiecej
+INTRODUCTION TO MACHINE LEARNING WITH PYTHON - O'REILLY

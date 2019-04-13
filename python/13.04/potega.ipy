@@ -1,0 +1,6 @@
+num = 2**1000
+counter = 0
+for i in str(num):
+    counter+=int(i)
+
+print(counter)
