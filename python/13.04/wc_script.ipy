@@ -4,7 +4,7 @@ import sys
 linesNumber = 0
 charNumber = 0
 wordsNumber = 0
-
+filename = sys.argv[1]
 for filename in sys.argv[1:]:
     with open(filename) as s:
         linesNumber = 0

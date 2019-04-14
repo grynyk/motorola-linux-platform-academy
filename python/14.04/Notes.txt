@@ -1,0 +1,13 @@
+Asercje:
+    Sprawdzamy czy zmienna posiada oczekiwana wartosc
+Menedzer kontersku:
+    open - otworzyc strumien
+    ?.write('') - zapisac do pliku
+    ?.close() - zamknac strumien
+    menedżer kontekstu - zamyka strumien w kazdym przypadku
+    with open ('file', 'w') as s:
+        s.write('asdf')
+
+
+LEARNING PYTHON M.LUTZ
+HEAD FIRST PYTHON O'REILLY
