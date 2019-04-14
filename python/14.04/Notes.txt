@@ -11,3 +11,10 @@ Menedzer kontersku:
 
 LEARNING PYTHON M.LUTZ
 HEAD FIRST PYTHON O'REILLY
+
+Functions:
+    def function(a,b)
+        return a + b
+    wywolanie:
+        function(a,b)
+    

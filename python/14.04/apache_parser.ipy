@@ -1,0 +1,16 @@
+#!/usr/bin/env python
+sum = 0
+with open('apache.log') as s:
+    for line in s:
+        col = line.split()
+        if col[len(col)-1] is not '-':
+            sum = sum + int(col[len(col)-1])
+    # result2 = sum([ int(x) for x in [line.split()[-1] for line in s]
+    #             if x is not '-' ])
+
+    # print(result2)
+print(sum)
+
+
+
+# print(linesNumber, wordsNumber, charNumber)
